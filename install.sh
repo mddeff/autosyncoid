@@ -12,7 +12,7 @@ mkdir -p /etc/sanoid
 cp autosyncoid.example.yaml /etc/sanoid/autosyncoid.yaml
 
 echo "If you haven't seen any errors, then setup is complete! 
-    Edit /etc/syncoid/autosyncoid.yaml and run
+    Edit /etc/sanoid/autosyncoid.yaml and run
     
     systemctl enable autosyncoid.timer
     
