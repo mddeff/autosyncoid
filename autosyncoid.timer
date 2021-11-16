@@ -1,0 +1,10 @@
+
+[Unit]
+Description=Runs autosyncoid script
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target

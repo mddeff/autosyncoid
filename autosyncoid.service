@@ -1,0 +1,9 @@
+[Unit]
+Description=Runs autosyncoid script against configs
+Requires=zfs.target
+After=zfs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/autosyncoid.py /etc/sanoid/autosyncoid.yaml
+
