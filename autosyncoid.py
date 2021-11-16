@@ -33,7 +33,7 @@ for dataset in config["datasets"]:
         datasetArgs = dataset['options']
 
     # construct command string
-    cmdString = "sanoid " + ' '.join(config['defaultArgs']) + " " + ' '.join(dataset['options']) + " " + dataset['source'] + " " + dataset['target']
+    cmdString = "sanoid " + ' '.join(config['defaultArgs']) + " " + ' '.join(datasetArgs) + " " + dataset['source'] + " " + dataset['target']
     print("Running the following command:\n" + cmdString)
 
     # construct command list
