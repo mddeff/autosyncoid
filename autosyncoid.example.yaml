@@ -1,0 +1,7 @@
+datasets:
+  - source: tank2/vms
+    target: dozer2/tank2/vms
+    options: 
+      - '--force-delete'
+defaultArgs:
+  - '--no-sync-snap'
