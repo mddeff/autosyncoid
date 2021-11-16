@@ -28,7 +28,7 @@ if 'defaultArgs' in config and isinstance(config['defaultArgs'], list):
 for dataset in config["datasets"]:
 
     # read local args
-    datasetArgs = ""
+    datasetArgs = []
     if 'options' in dataset and isinstance(dataset['options'], list):
         datasetArgs = dataset['options']
 
@@ -39,7 +39,7 @@ for dataset in config["datasets"]:
     # construct command list
     cmdList = ['syncoid']
     cmdList.extend(defaultArgs)
-    cmdList.extend(dataset['options'])
+    cmdList.extend(datasetArgs)
     cmdList.append(dataset['source'])
     cmdList.append(dataset['target'])
 
