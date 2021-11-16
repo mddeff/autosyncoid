@@ -3,5 +3,8 @@ datasets:
     target: dozer2/tank2/vms
     options: 
       - '--force-delete'
-defaultArgs:
-  - '--no-sync-snap'
+options:
+  defaultArgs:
+    - '--no-sync-snap'
+  dryrun: True
+  syncoidCommand: "syncoid"

@@ -18,11 +18,20 @@ except FileNotFoundError:
     print(configFile + " was not found. Exiting!")
     sys.exit(1)
 
-# read global args
+# read 'options' section of config file
 
 defaultArgs = []
-if 'defaultArgs' in config and isinstance(config['defaultArgs'], list):
-    defaultArgs = config['defaultArgs']
+syncoidCommand = ""
+dryrun = None
+
+if 'defaultArgs' in config['options'] and isinstance(config['options']['defaultArgs'], list):
+    defaultArgs = config['options']['defaultArgs']
+
+if 'syncoidCommand' in config['options']:
+    syncoidCommand = config['options']['syncoidCommand']
+if 'dryrun' in config['options'] and config['options']['dryrun']:
+    dryrun = True
+
 
 # loop through datasets
 for dataset in config["datasets"]:
@@ -32,16 +41,18 @@ for dataset in config["datasets"]:
     if 'options' in dataset and isinstance(dataset['options'], list):
         datasetArgs = dataset['options']
 
-    # construct command string
-    cmdString = "sanoid " + ' '.join(config['defaultArgs']) + " " + ' '.join(datasetArgs) + " " + dataset['source'] + " " + dataset['target']
-    print("Running the following command:\n" + cmdString)
-
-    # construct command list
-    cmdList = ['syncoid']
+    # construct command string - just for pretty printing
+    cmdList = [syncoidCommand]
     cmdList.extend(defaultArgs)
     cmdList.extend(datasetArgs)
     cmdList.append(dataset['source'])
     cmdList.append(dataset['target'])
 
+    cmdString = ' '.join(cmdList)
+    print("Running the following command:\n" + cmdString)
+
     # do it
-    sp.run(cmdList)
+    if dryrun:
+        print( ".....DRYRUN enabled, not actually running...")
+    else:
+        sp.run(cmdList)
